@@ -39,13 +39,12 @@ The chatbot understands natural language product queries and retrieves matching 
 
 An updated UI featuring a floating chatbot widget with dedicated FAQ, Product Search, and Small Talk routing for a more realistic shopping experience.
 
-![Version 2 Screenshot](app/resources/product-ss-aesthetic.png)
-
+<img src="app/resources/product-ss.png" width="900">
 ---
 
 ## 🏗️ Architecture
 
-![architecture diagram of the e-commerce chatbot](app/resources/architecture-diagram.png)
+<img src="app/resources/product-ss-aesthetic.png" width="900">
 
 ---
 

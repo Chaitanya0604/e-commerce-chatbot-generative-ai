@@ -24,7 +24,8 @@
 #            list of example sentences (utterances) that represent it.
 # RouteLayer -> a class that takes a collection of Route objects and turns
 #            them into a working classifier we can call with a new question.
-from semantic_router import Route, RouteLayer
+from semantic_router import Route
+from semantic_router.routers import SemanticRouter  
 
 # HuggingFaceEncoder -> the component that converts text into an embedding
 # (a list of numbers that captures the MEANING of the sentence). We use the
@@ -66,7 +67,8 @@ faq = Route(
         "How can I track my order?",
         "What payment methods are accepted?",
         "How long does it take to process a refund?",
-    ]
+    ],
+    score_threshold=0.3   
 )
 
 
@@ -87,7 +89,25 @@ sql = Route(
         "Do you have formal shoes in size 9?",
         "Are there any Puma shoes on sale?",
         "What is the price of puma running shoes?",
-    ]
+    ],
+    score_threshold=0.3   
+)
+
+smalltalk = Route(
+    name='small-talk',
+    utterances=[
+        "hi",
+        "hello",
+        "hey there",
+        "how are you?",
+        "what's your name?",
+        "what can you do?",
+        "good morning",
+        "thanks, bye",
+        "how is the weather today?",
+        "what is your purpose?",
+    ],
+    score_threshold=0.3
 )
 
 
@@ -104,7 +124,7 @@ sql = Route(
 # As soon as this line runs, every utterance from every route is encoded
 # into embeddings and stored in memory. This is why classifying a NEW
 # question later is fast — only that one new sentence needs to be encoded.
-router = RouteLayer(routes=[faq, sql], encoder=encoder)
+router = SemanticRouter(routes=[faq, sql, smalltalk], encoder=encoder, auto_sync="local")
 
 
 # -----------------------------------------------------------------------------

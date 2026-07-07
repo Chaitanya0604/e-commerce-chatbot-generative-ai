@@ -17,6 +17,7 @@
 import streamlit as st                      # Turns this plain script into an interactive web app (no HTML/CSS/JS needed). Alias 'st' so we can write st.something.
 from faq import ingest_faq_data, faq_chain  # ingest_faq_data: loads FAQ CSV into ChromaDB. faq_chain: answers FAQ-style questions via semantic search + LLM.
 from sql import sql_chain                   # sql_chain: answers product/pricing questions by generating SQL, running it, and explaining the results.
+from smalltalk import talk                 # talk: answers small-talk questions via LLM.
 from pathlib import Path                    # Cross-platform way to build file paths (works on Windows, Mac, Linux alike).
 from router import router                   # The RouteLayer object built in router.py. Calling router(question) classifies a query as 'faq' or 'sql'.
 
@@ -55,7 +56,7 @@ def ask(query):
 # -----------------------------------------------------------------------------
 # Visible page elements.
 # -----------------------------------------------------------------------------
-st.title("E-commerce Bot")                       # Renders a large heading at the top of the page. Purely visual.
+st.title("E-commerce Bot ")                       # Renders a large heading at the top of the page. Purely visual.
 query = st.chat_input("Write your query")        # Renders a ChatGPT-style input box at the bottom. Returns None until the user types something and hits enter.
 
 # -----------------------------------------------------------------------------

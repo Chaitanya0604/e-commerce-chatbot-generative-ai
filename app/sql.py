@@ -35,7 +35,7 @@ load_dotenv()  # Reads .env and makes its contents available via os.environ / os
 
 GROQ_MODEL = os.getenv('GROQ_MODEL')  # e.g. "llama-3.3-70b-versatile" — read once and reused everywhere below.
 
-db_path = Path(__file__).parent / "db.sqlite"  # Full path to the SQLite file sitting next to this script (the same one explored via sqlite3 / DB Browser).
+db_path = db_path = Path(__file__).parent / "resources" / "db.sqlite"  # Full path to the SQLite file sitting next to this script (the same one explored via sqlite3 / DB Browser).
 
 client_sql = Groq()  # Connection object used to actually send prompts to the LLM. Named client_sql (not just `client`) to stay distinct if more clients are ever added.
 
@@ -84,9 +84,13 @@ Just the SQL query is needed, nothing more. Always provide the SQL in between th
 # SYSTEM PROMPT #2 — teaches the LLM how to turn raw query results into a
 # clean, natural-sounding answer (the reverse direction: data -> English).
 # -----------------------------------------------------------------------------
-comprehension_prompt = """You are an expert in understanding the context of the question and replying based on the data pertaining to the question provided. You will be provided with Question: and Data:. The data will be in the form of an array or a dataframe or dict. Reply based on only the data provided as Data for answering the question asked as Question. Do not write anything like 'Based on the data' or any other technical words. Just a plain simple natural language response.
-The Data would always be in context to the question asked. For example is the question is “What is the average rating?” and data is “4.3”, then answer should be “The average rating for the product is 4.3”. So make sure the response is curated with the question and data. Make sure to note the column names to have some context, if needed, for your response.
-There can also be cases where you are given an entire dataframe in the Data: field. Always remember that the data field contains the answer of the question asked. All you need to do is to always reply in the following format when asked about a product: 
+comprehension_prompt = """You are an expert in understanding the context of the question and replying based on the data pertaining to the question provided. 
+You will be provided with Question: and Data:. The data will be in the form of an array or a dataframe or dict. Reply based on only the data provided as Data for answering the question asked as Question.
+Do not write anything like 'Based on the data' or any other technical words. Just a plain simple natural language response.
+The Data would always be in context to the question asked. For example is the question is “What is the average rating?” and data is “4.3”, then answer should be “The average rating for the product is 4.3”.
+So make sure the response is curated with the question and data. Make sure to note the column names to have some context, if needed, for your response.
+There can also be cases where you are given an entire dataframe in the Data: field. Always remember that the data field contains the answer of the question asked. 
+All you need to do is to always reply in the following format when asked about a product: 
 Produt title, price in indian rupees, discount, and rating, and then product link. Take care that all the products are listed in list format, one line after the other. Not as a paragraph.
 For example:
 1. Campus Women Running Shoes: Rs. 1104 (35 percent off), Rating: 4.4 <link>

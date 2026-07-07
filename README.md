@@ -31,7 +31,7 @@ The chatbot automatically understands the user's intent and routes the request t
 
 The chatbot understands natural language product queries and retrieves matching products from the SQLite database.
 
-![Product Search Screenshot] (app/resources/product-ss.png)
+<img src="app/resources/product-ss.png" width="900">
 
 ---
 
@@ -39,7 +39,7 @@ The chatbot understands natural language product queries and retrieves matching 
 
 An updated UI featuring a floating chatbot widget with dedicated FAQ, Product Search, and Small Talk routing for a more realistic shopping experience.
 
-![Version 2 Screenshot] (app/resources/product-ss-aesthetic.png)
+<img src="app/resources/product-ss-aesthetic.png" width="900">
 
 ---
 

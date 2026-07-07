@@ -31,7 +31,7 @@ The chatbot automatically understands the user's intent and routes the request t
 
 The chatbot understands natural language product queries and retrieves matching products from the SQLite database.
 
-(app/resources/product-ss.png)
+![Product Search Screenshot](app/resources/product-ss.png)
 
 ---
 
